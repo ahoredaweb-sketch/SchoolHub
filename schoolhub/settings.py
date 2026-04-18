@@ -4,8 +4,17 @@ Django settings for schoolhub project.
 
 from pathlib import Path
 import os
+import cloudinary
+
+cloudinary.config(
+    cloud_name="dhgmmdy0x",
+    api_key=os.environ.get("633227788589796"),
+    api_secret=os.environ.get("kD4Soevk4bhY22rSyBjJRcAsmyI"),
+)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 SECRET_KEY = 'django-insecure-$*d6$q61)z0^v2h$f7mk=v&9pkmtqz+q5+rgnvlg%yoz-4=f1d'
 
@@ -26,6 +35,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary',
+    'cloudinary_storage',
 
     'materials',
 ]
@@ -82,5 +93,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

@@ -8,12 +8,18 @@ def home(request):
 
 def upload_material(request):
     if request.method == 'POST':
+        if 'file' not in request.FILES:
+            return render(request, 'materials/upload.html', {
+                'error': 'No file selected'
+            })
+
         Material.objects.create(
-            title=request.POST['title'],
-            course=request.POST['course'],
+            title=request.POST.get('title'),
+            course=request.POST.get('course'),
             file=request.FILES['file'],
             uploaded_by=None
         )
+
         return redirect('home')
 
     return render(request, 'materials/upload.html')
