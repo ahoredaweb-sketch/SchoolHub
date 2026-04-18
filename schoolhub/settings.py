@@ -5,6 +5,7 @@ Django settings for schoolhub project.
 from pathlib import Path
 import os
 import cloudinary
+import dj_database_url
 
 cloudinary.config(
     cloud_name="dhgmmdy0x",
@@ -70,11 +71,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'schoolhub.wsgi.application'
 
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL')
+    )
 }
 
 AUTH_PASSWORD_VALIDATORS = [
