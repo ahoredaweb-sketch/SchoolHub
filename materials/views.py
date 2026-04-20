@@ -68,3 +68,12 @@ def download_material(request, pk):
         as_attachment=True,
         filename=material.file.name.split('/')[-1]
     )
+
+from django.shortcuts import get_object_or_404, redirect
+from .models import Material
+
+def download(request, id):
+    material = get_object_or_404(Material, id=id)
+    material.downloads += 1
+    material.save()
+    return redirect(material.file.url)
