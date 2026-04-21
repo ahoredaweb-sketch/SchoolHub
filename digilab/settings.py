@@ -5,17 +5,13 @@ import cloudinary
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-cloudinary.config(
-    cloud_name="dhgmmdy0x",
-    api_key="633227788589796",
-    api_secret="kD4Soevk4bhY22rSyBjJRcAsmyI",
-)
-# 🔥 CLOUDINARY
-cloudinary.config(
-    cloud_name="dhgmmdy0x",
-    api_key=os.environ.get("CLOUDINARY_API_KEY"),
-    api_secret=os.environ.get("CLOUDINARY_API_SECRET"),
-)
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dhgmmdy0x',
+    'API_KEY': '633227788589796',
+    'API_SECRET': 'kD4Soevk4bhY22rSyBjJRcAsmyI',
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
 # 🔐 SECURITY
