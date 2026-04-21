@@ -74,25 +74,11 @@ from django.http import HttpResponse
 from .models import Material
 
 def download(request, id):
+    from django.http import HttpResponse
     material = get_object_or_404(Material, id=id)
 
-    # Debug info
-    print("Material:", material)
-    print("File:", material.file)
-
-    if not material.file:
-        return HttpResponse("❌ No file attached", status=404)
-
-    try:
-        file_url = material.file.url
-        print("File URL:", file_url)
-    except Exception as e:
-        return HttpResponse(f"❌ URL error: {str(e)}", status=500)
-
-    try:
-        material.downloads += 1
-        material.save()
-    except Exception as e:
-        return HttpResponse(f"❌ DB error: {str(e)}", status=500)
-
-    return redirect(file_url)
+    return HttpResponse(f"""
+    TITLE: {material.title}<br>
+    FILE FIELD: {material.file}<br>
+    FILE URL: {getattr(material.file, 'url', 'NO URL')}<br>
+    """)
