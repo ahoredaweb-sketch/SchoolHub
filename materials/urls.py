@@ -5,6 +5,5 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('upload/', views.upload_material, name='upload'),
     path('download/<int:id>/', views.download, name='download'),
-    path('delete/<int:id>/', views.delete_material, name='delete'),
     path('delete-all/', views.delete_all_materials),
 ]
